@@ -8,7 +8,7 @@ export const viewUser = async (req: Request, res: Response): Promise<any> => {
     try {
         if(method === 'GET') {            
             const users = await User.findAll({
-                attributes: {exclude: ['password', 'rtoken']}
+                attributes: {exclude: ['password', 'rtoken', 'roleId']},
             })
             return res.status(200).json({
             data: users,

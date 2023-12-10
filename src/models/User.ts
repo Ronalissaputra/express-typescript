@@ -6,7 +6,7 @@ interface userAttributes {
   username?: string,
   email?: string,
   password?: string,
-  role?: number,
+  roleId?: number,
   rtoken?: string | null,
 
   createdAt?: Date,
@@ -21,11 +21,15 @@ class User extends Model<userAttributes, Userinput> implements userAttributes {
   public username!: string;
   public email!: string;
   public password!: string;
-  public role!: number;
+  public roleId!: number;
   public rtoken!: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+
+  static associate(models: any){
+    User.belongsTo(models.Role, {foreignKey: "roleId"})
+  }
 
 }
 
@@ -49,9 +53,9 @@ User.init({
     allowNull: false,
     type: DataTypes.STRING
   },
-  role: {
+  roleId: {
     allowNull: false,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
   },
   rtoken: {
     allowNull: true,
@@ -60,6 +64,7 @@ User.init({
 },{
     timestamps: true,
     tableName: "Users",
+    modelName: "User",
     sequelize: sequelizeConnection,
     underscored: false
   })
