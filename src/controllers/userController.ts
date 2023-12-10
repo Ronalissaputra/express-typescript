@@ -6,9 +6,9 @@ export const viewUser = async (req: Request, res: Response): Promise<any> => {
     const method = req.method;
     const {password, confpassword,...body } = req.body;
     try {
-        if(method === 'GET') {
+        if(method === 'GET') {            
             const users = await User.findAll({
-                attributes: {exclude: ['password']}
+                attributes: {exclude: ['password', 'rtoken']}
             })
             return res.status(200).json({
             data: users,
@@ -33,7 +33,7 @@ export const viewUser = async (req: Request, res: Response): Promise<any> => {
         }
     } catch (error) {
         console.log(error);
-        return res.status(500).json({"message": "Terjadi kesalahan di internal server!!"})
+        return res.status(500).json({"message": "server error"})
     }
 }
 
@@ -71,6 +71,6 @@ export const viewUserById = async (req:Request, res: Response): Promise<any> => 
         }
     } catch (error) {
         console.log(error);
-        return res.status(500).json({"message": "Internal server error!!"})  
+        return res.status(500).json({"message": "server error"})  
     }
 }

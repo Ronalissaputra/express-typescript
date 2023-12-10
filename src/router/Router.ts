@@ -1,21 +1,24 @@
 import express from "express"
+import { Authorization } from "../middleware/authorization"
+import { adminOnly } from "../middleware/adminOnly"
 import { viewUser, viewUserById } from "../controllers/userController"
-import { viewAuth } from "../controllers/authController";
+import { viewAuth, viewToken } from "../controllers/authController";
 
 const router = express.Router()
 
 // auth
-router.route("/login").post(viewAuth)
-router.route("/logout").delete(viewAuth)
+router.route("/api/login").post(viewAuth)
+router.route("/api/logout").delete(viewAuth)
+router.route("/api/refresh").get(viewToken)
 
 // users
-router.route("/users")
-    .get(viewUser)
+router.route("/api/users")
+    .get(Authorization, adminOnly, viewUser)
     .post(viewUser);
-router.route("/user/:id")
-    .get(viewUserById)
-    .delete(viewUserById)
-    .patch(viewUserById)
+router.route("/api/user/:id")
+    .get(Authorization, viewUserById)
+    .delete(Authorization, viewUserById)
+    .patch(Authorization, viewUserById)
 
 
 export default router;

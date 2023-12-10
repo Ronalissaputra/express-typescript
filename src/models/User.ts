@@ -6,6 +6,7 @@ interface userAttributes {
   username?: string,
   email?: string,
   password?: string,
+  role?: number,
   rtoken?: string | null,
 
   createdAt?: Date,
@@ -20,10 +21,12 @@ class User extends Model<userAttributes, Userinput> implements userAttributes {
   public username!: string;
   public email!: string;
   public password!: string;
-  public rtoken!: string | null;
+  public role!: number;
+  public rtoken!: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+
 }
 
 User.init({
@@ -31,7 +34,7 @@ User.init({
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
   },
   username: {
     allowNull: false,
@@ -46,9 +49,13 @@ User.init({
     allowNull: false,
     type: DataTypes.STRING
   },
+  role: {
+    allowNull: false,
+    type: DataTypes.INTEGER
+  },
   rtoken: {
     allowNull: true,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
   }
 },{
     timestamps: true,
