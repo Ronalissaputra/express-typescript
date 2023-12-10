@@ -1,0 +1,11 @@
+PATCH http://localhost:8000/user/1
+Content-Type: application/json
+
+{
+    "username": "Ronalis updated",
+    "email": "ronalissaputra@gmail.com",
+    "password": "ronalis021"
+}
+
+###
+DELETE http://localhost:8000/user/4
