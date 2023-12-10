@@ -1,9 +1,10 @@
 import { Request, Response } from "express"
 import User from "../models/User";
+import argon2 from "argon2"
 
 export const viewUser = async (req: Request, res: Response): Promise<any> => {
     const method = req.method;
-    const {...body } = req.body;
+    const {password, confpassword,...body } = req.body;
     try {
         if(method === 'GET') {
             const users = await User.findAll({
@@ -13,11 +14,19 @@ export const viewUser = async (req: Request, res: Response): Promise<any> => {
             data: users,
         })
         }else if(method === 'POST'){
-            const validateEmail = await User.findOne({where: { email: body.email }})
+            const validateEmail = await User.findOne({
+                where: { email: body.email }, 
+                attributes: {exclude: ['password']}
+            })
             if(validateEmail){
                 return res.status(400).json({"message": "Email sudah terdaftar!!"})
             }
+            if(password !== confpassword) {
+                return res.status(400).json({"message": "Password dan confpassword tidak cocok"})
+            }
+            const hashpassword = await argon2.hash(password);
             const user = await User.create({
+            password: hashpassword,
             ...body
             })
             return res.status(200).json(user)
