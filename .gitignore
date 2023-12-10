@@ -2,3 +2,4 @@
 /.sequelizerc
 /.env
 /dist
+/request.rest
