@@ -1,5 +1,5 @@
-###!SECTION API TYPESCRIPT
-###NOTE - Author - RONALIS
+### API TYPESCRIPT
+* Author - RONALIS
 
 ## Status response
 
