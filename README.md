@@ -14,10 +14,10 @@
 
 ## Request
 
-# Admin
+### Admin
 * GET, POST, PATCH, DELETE
 
-- User
+### User
 * GET, POST, PATCH, DELETE
 
 ## Proses
