@@ -14,8 +14,8 @@
 
 ## Request
 
-#FIXME Admin
-  *TODO - GET
+# Admin
+* GET
   *TODO - POST
   *TODO - PATCH
   *TODO - DELETE
