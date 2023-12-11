@@ -1,5 +1,5 @@
 ###!SECTION API TYPESCRIPT
-###NOTE - Author \*ANCHOR - RONALIS
+###NOTE - Author - RONALIS
 
 ## Status response
 
@@ -15,15 +15,9 @@
 ## Request
 
 # Admin
-* GET
-  *TODO - POST
-  *TODO - PATCH
-  *TODO - DELETE
+* GET, POST, PATCH, DELETE
 
 - User
-  *TODO - GET
-  *TODO - POST
-  *TODO - PATCH
-  *TODO - DELETE
+* GET, POST, PATCH, DELETE
 
-- Proses
+## Proses
