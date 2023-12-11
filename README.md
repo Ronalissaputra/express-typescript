@@ -1,5 +1,5 @@
 ### API TYPESCRIPT
-> AUTHOR -> RONALIS👋
+> AUTHOR - RONALIS👋
 
 ## Status response
 
